@@ -13,10 +13,10 @@ parser = P.chainl1 (P.skipSpaces *> lit <* P.skipSpaces) op where
     , (RNot <$  P.char '!' <*> parser) 
     ]
   op = P.choice 
-    [ ROr   <$ P.string "||"
-    , RAnd  <$ P.string "&&" 
-    , (\l r -> ROr (RNot l) r) <$ P.string "=>" 
-    , RXor  <$ P.string "!=" 
+    [ flip RBin Or   <$ P.string "||"
+    , flip RBin And  <$ P.string "&&" 
+    , (\l r -> RBin (RNot l) Or r) <$ P.string "=>" 
+    , flip RBin Xor  <$ P.string "!=" 
     ] 
 
 parse :: String -> Raw
