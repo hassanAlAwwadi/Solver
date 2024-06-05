@@ -64,6 +64,7 @@ library
       Bool.CNF, 
       Bool.Solver,
       Bool.Parser,
+      Bool.Translation
         
 
     -- Modules included in this library but not exported.

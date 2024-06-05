@@ -27,5 +27,5 @@ tseytin = form . go names [] . simplify where
     Xor  -> [[Neg x, Neg y, Neg n], [Lit x, Lit y, Neg n], [Lit x, Neg y, Lit n], [Neg x, Lit y, Lit n]]
     Xnor -> [[Neg x, Neg y, Lit n], [Lit x, Lit y, Lit n], [Lit x, Neg y, Neg n], [Neg x, Lit y, Neg n]]
 
-  form :: (a, [[Lit]], b) -> CNF 
-  form (_, litss, _) = CNF $ fmap Clause (litss)
+  form :: (String, [[Lit]], b) -> CNF 
+  form (name, litss, _) = CNF $ fmap Clause ([Lit name] : litss)

@@ -13,7 +13,7 @@ sat_tree_method (CNF clauses) = go clauses M.empty where
   go [] m                      = Just m 
   go ((Clause lits):cs) litmap = let 
     branchmaps = go' lits litmap
-    in asum $ fmap (go cs) branchmaps -- or on empty is false :relieved:
+    in asum $ fmap (go cs) branchmaps
 
   go' :: [Lit] -> Map String Bool -> [Map String Bool]
   go' [] _ = [] 
@@ -24,4 +24,3 @@ sat_tree_method (CNF clauses) = go clauses M.empty where
     Just status -> if status == desire 
       then m : go' lits m 
       else go' lits m -- kill this branch
-
