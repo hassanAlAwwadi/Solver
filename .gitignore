@@ -30,3 +30,5 @@ repl-temp-*
 *.xopp
 index.html
 main.js
+exprs/sat/*
+exprs/unsat/*

@@ -133,4 +133,5 @@ test-suite SMT-SOLVER-test
     -- Test dependencies.
     build-depends:
         base ^>=4.19.1.0,
-        SMT-SOLVER
+        SMT-SOLVER,
+        directory,
