@@ -2,11 +2,13 @@
 module Bool.Translation where 
 import Bool.Raw as R
 import Bool.CNF as C 
+import Data.Set(fromList)
 
 tseytin :: Raw -> CNF
-tseytin = form . go names [] . simplify where
+tseytin = form . go names [] where
   names = ('_' :) . show @Int <$> [0..] -- reserved names. "_0", "_1".. etc. Users are not allowed to use!.
   go :: [String] -> [[Lit]] -> Raw -> (String, [[Lit]], [String])
+  go []     _   = error "infinite list ran out of values..."
   go (n:ns) acc = \case 
     RLit  x   -> (x, acc, (n:ns))
     RNot  x   -> let 
